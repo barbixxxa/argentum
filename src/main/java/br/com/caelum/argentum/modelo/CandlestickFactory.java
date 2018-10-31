@@ -9,8 +9,9 @@ public class CandlestickFactory {
 	 * Método para construir um candlestick
 	 */
 	public Candlestick constroiCandleParaData(Calendar data, List<Negociacao> negociacoes) {
-		double maximo = negociacoes.get(0).getPreco();
-		double minimo = negociacoes.get(0).getPreco();
+		double maximo = 0; // pegar o menor valor possivel para ser alterado logo na primeira iteração
+		double minimo = Double.MAX_VALUE; // pegar o maior valor aceito pelo double para ser alterado logo na primeira
+											// iteração
 		double volume = 0;
 
 		for (Negociacao negociacao : negociacoes) {
@@ -23,8 +24,10 @@ public class CandlestickFactory {
 			}
 		}
 
-		double abertura = negociacoes.get(0).getPreco(); // pega o primeiro valor
-		double fechamento = negociacoes.get(negociacoes.size() - 1).getPreco();// pega o ultimo valor
+		double abertura = negociacoes.isEmpty() ? 0 : negociacoes.get(0).getPreco(); // pega o primeiro valor
+		double fechamento = negociacoes.isEmpty() ? 0 : negociacoes.get(negociacoes.size() - 1).getPreco();// pega o
+																											// ultimo
+																											// valor
 
 		return new Candlestick(abertura, fechamento, minimo, maximo, volume, data); // retorna um novo candlestick com
 																					// as informações calcualdas
