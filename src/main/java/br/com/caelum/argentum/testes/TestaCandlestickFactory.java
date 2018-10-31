@@ -1,5 +1,6 @@
 package br.com.caelum.argentum.testes;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
@@ -15,10 +16,10 @@ public class TestaCandlestickFactory {
 		Calendar hoje = Calendar.getInstance(); // pega a data de hoje
 
 		// cria 4 negociações
-		Negociacao negociacao1 = new Negociacao(40.5, 100, hoje);
-		Negociacao negociacao2 = new Negociacao(45.0, 100, hoje);
-		Negociacao negociacao3 = new Negociacao(39.8, 100, hoje);
-		Negociacao negociacao4 = new Negociacao(42.3, 100, hoje);
+		Negociacao negociacao1 = new Negociacao(new BigDecimal("40.5"), 100, hoje);
+		Negociacao negociacao2 = new Negociacao(new BigDecimal("45.0"), 100, hoje);
+		Negociacao negociacao3 = new Negociacao(new BigDecimal("39.8"), 100, hoje);
+		Negociacao negociacao4 = new Negociacao(new BigDecimal("42.3"), 100, hoje);
 		// adiciona as negociações a uma lista
 		List<Negociacao> negociacoes = Arrays.asList(negociacao1, negociacao2, negociacao3, negociacao4);
 

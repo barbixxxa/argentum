@@ -1,23 +1,24 @@
 package br.com.caelum.argentum.modelo;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 public final class Negociacao {
 
 	// atributos
-	private final double preco;
+	private final BigDecimal preco;
 	private final int quantidade;
 	private final Calendar data;
 
 	// construtor
-	public Negociacao(double preco, int quantidade, Calendar data) {
+	public Negociacao(BigDecimal preco, int quantidade, Calendar data) {
 		this.preco = preco;
 		this.quantidade = quantidade;
 		this.data = data;
 	}
 
 	// getters
-	public double getPreco() {
+	public BigDecimal getPreco() {
 		return preco;
 	}
 
@@ -32,7 +33,7 @@ public final class Negociacao {
 	/*
 	 * Método para retornar o volume de dinheiro transferido em uma negociação.
 	 */
-	public double getVolume() {
-		return preco * quantidade;
+	public BigDecimal getVolume() {
+		return preco.multiply(new BigDecimal(quantidade));
 	}
 }
