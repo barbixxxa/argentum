@@ -19,6 +19,16 @@ public final class Candlestick {
 	 * construtor
 	 */
 	public Candlestick(double abertura, double fechamento, double minimo, double maximo, double volume, Calendar data) {
+		if (data == null) {
+			throw new IllegalArgumentException("data nao pode ser nula");
+		}
+		if (abertura < 0 || fechamento < 0 || minimo < 0 || maximo < 0 || volume < 0) {
+			throw new IllegalArgumentException("o valor não pode ser negativo");
+		}
+		if (maximo < minimo) {
+			throw new IllegalArgumentException("Valor maximo não pode ser menor que o minimo");
+		}
+
 		this.abertura = abertura;
 		this.fechamento = fechamento;
 		this.minimo = minimo;

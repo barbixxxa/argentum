@@ -11,6 +11,10 @@ public final class Negociacao {
 
 	// construtor
 	public Negociacao(double preco, int quantidade, Calendar data) {
+		if (data == null) {
+			throw new IllegalArgumentException("data nao pode ser nula");
+		}
+
 		this.preco = preco;
 		this.quantidade = quantidade;
 		this.data = data;
@@ -26,7 +30,7 @@ public final class Negociacao {
 	}
 
 	public Calendar getData() {
-		return data;
+		return (Calendar) this.data.clone();
 	}
 
 	/*

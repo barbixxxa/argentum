@@ -10,8 +10,8 @@ public class CandlestickFactory {
 	 */
 	public Candlestick constroiCandleParaData(Calendar data, List<Negociacao> negociacoes) {
 		double maximo = 0; // pegar o menor valor possivel para ser alterado logo na primeira iteração
-		double minimo = Double.MAX_VALUE; // pegar o maior valor aceito pelo double para ser alterado logo na primeira
-											// iteração
+		double minimo = negociacoes.isEmpty() ? 0 : Double.MAX_VALUE; // pegar o maior valor aceito pelo double para ser
+																		// alterado logo na primeira iteração
 		double volume = 0;
 
 		for (Negociacao negociacao : negociacoes) {
@@ -19,7 +19,8 @@ public class CandlestickFactory {
 												// total negociado
 			if (negociacao.getPreco() > maximo) {
 				maximo = negociacao.getPreco();// verifica se o valor de negociacao é maior que o maximo ja existente
-			} else if (negociacao.getPreco() < minimo) {
+			}
+			if (negociacao.getPreco() < minimo) {
 				minimo = negociacao.getPreco();// verifica se o valor de negociacao é menor que o minimo ja existente
 			}
 		}
