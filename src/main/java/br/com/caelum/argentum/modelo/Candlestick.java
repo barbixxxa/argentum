@@ -1,6 +1,5 @@
 package br.com.caelum.argentum.modelo;
 
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -9,18 +8,17 @@ public final class Candlestick {
 	/*
 	 * atributos
 	 */
-	private final BigDecimal abertura;
-	private final BigDecimal fechamento;
-	private final BigDecimal minimo;
-	private final BigDecimal maximo;
-	private final BigDecimal volume;
+	private final double abertura;
+	private final double fechamento;
+	private final double minimo;
+	private final double maximo;
+	private final double volume;
 	private final Calendar data;
 
 	/*
 	 * construtor
 	 */
-	public Candlestick(BigDecimal abertura, BigDecimal fechamento, BigDecimal minimo, BigDecimal maximo,
-			BigDecimal volume, Calendar data) {
+	public Candlestick(double abertura, double fechamento, double minimo, double maximo, double volume, Calendar data) {
 		this.abertura = abertura;
 		this.fechamento = fechamento;
 		this.minimo = minimo;
@@ -32,23 +30,23 @@ public final class Candlestick {
 	/*
 	 * getters
 	 */
-	public BigDecimal getAbertura() {
+	public double getAbertura() {
 		return abertura;
 	}
 
-	public BigDecimal getFechamento() {
+	public double getFechamento() {
 		return fechamento;
 	}
 
-	public BigDecimal getMinimo() {
+	public double getMinimo() {
 		return minimo;
 	}
 
-	public BigDecimal getMaximo() {
+	public double getMaximo() {
 		return maximo;
 	}
 
-	public BigDecimal getVolume() {
+	public double getVolume() {
 		return volume;
 	}
 
@@ -56,19 +54,19 @@ public final class Candlestick {
 		return data;
 	}
 
-	// /*
-	// * Método para retornar se o Candlestick é do tipo de alta
-	// */
-	// public boolean isAlta() {
-	// return this.abertura < this.fechamento;
-	// }
-	//
-	// /*
-	// * Método para retornar se o Candlestick é do tipo de baixa
-	// */
-	// public boolean isBaixa() {
-	// return this.abertura > this.fechamento;
-	// }
+	/*
+	 * Método para retornar se o Candlestick é do tipo de alta
+	 */
+	public boolean isAlta() {
+		return this.abertura < this.fechamento;
+	}
+
+	/*
+	 * Método para retornar se o Candlestick é do tipo de baixa
+	 */
+	public boolean isBaixa() {
+		return this.abertura > this.fechamento;
+	}
 
 	public String toString() {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
