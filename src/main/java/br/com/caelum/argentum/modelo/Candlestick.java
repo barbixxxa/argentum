@@ -56,7 +56,6 @@ public final class Candlestick {
 		return data;
 	}
 
-<<<<<<< HEAD
 	// /*
 	// * Método para retornar se o Candlestick é do tipo de alta
 	// */
@@ -70,21 +69,6 @@ public final class Candlestick {
 	// public boolean isBaixa() {
 	// return this.abertura > this.fechamento;
 	// }
-=======
-//	/*
-//	 * Método para retornar se o Candlestick é do tipo de alta
-//	 */
-//	public boolean isAlta() {
-//		return this.abertura < this.fechamento;
-//	}
-//
-//	/*
-//	 * Método para retornar se o Candlestick é do tipo de baixa
-//	 */
-//	public boolean isBaixa() {
-//		return this.abertura > this.fechamento;
-//	}
->>>>>>> eff8824d9d1fe0b548695a98fe0a0df3cd59dcae
 
 	public String toString() {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
