@@ -1,10 +1,11 @@
 package br.com.caelum.argentum.modelo;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 public class CandlestickFactoryTest {
@@ -23,11 +24,11 @@ public class CandlestickFactoryTest {
 		CandlestickFactory fabrica = new CandlestickFactory();
 		Candlestick candle = fabrica.constroiCandleParaData(hoje, negociacoes);
 
-		Assert.assertEquals(40.5, candle.getAbertura(), 0.00001);
-		Assert.assertEquals(42.3, candle.getFechamento(), 0.00001);
-		Assert.assertEquals(39.8, candle.getMinimo(), 0.00001);
-		Assert.assertEquals(45.0, candle.getMaximo(), 0.00001);
-		Assert.assertEquals(16760.0, candle.getVolume(), 0.00001);
+		assertEquals(40.5, candle.getAbertura(), 0.00001);
+		assertEquals(42.3, candle.getFechamento(), 0.00001);
+		assertEquals(39.8, candle.getMinimo(), 0.00001);
+		assertEquals(45.0, candle.getMaximo(), 0.00001);
+		assertEquals(16760.0, candle.getVolume(), 0.00001);
 	}
 
 	@Test
@@ -39,11 +40,11 @@ public class CandlestickFactoryTest {
 		CandlestickFactory fabrica = new CandlestickFactory();
 		Candlestick candle = fabrica.constroiCandleParaData(hoje, negociacoes);
 
-		Assert.assertEquals(0.0, candle.getVolume(), 0.00001);
-		Assert.assertEquals(0.0, candle.getAbertura(), 0.00001);
-		Assert.assertEquals(0.0, candle.getFechamento(), 0.00001);
-		Assert.assertEquals(0.0, candle.getMaximo(), 0.00001);
-		Assert.assertEquals(0.0, candle.getMinimo(), 0.00001);
+		assertEquals(0.0, candle.getVolume(), 0.00001);
+		assertEquals(0.0, candle.getAbertura(), 0.00001);
+		assertEquals(0.0, candle.getFechamento(), 0.00001);
+		assertEquals(0.0, candle.getMaximo(), 0.00001);
+		assertEquals(0.0, candle.getMinimo(), 0.00001);
 	}
 
 	@Test
@@ -57,11 +58,59 @@ public class CandlestickFactoryTest {
 		CandlestickFactory fabrica = new CandlestickFactory();
 		Candlestick candle = fabrica.constroiCandleParaData(hoje, negociacoes);
 
-		Assert.assertEquals(40.5, candle.getAbertura(), 0.00001);
-		Assert.assertEquals(40.5, candle.getFechamento(), 0.00001);
-		Assert.assertEquals(40.5, candle.getMinimo(), 0.00001);
-		Assert.assertEquals(40.5, candle.getMaximo(), 0.00001);
-		Assert.assertEquals(4050.0, candle.getVolume(), 0.00001);
+		assertEquals(40.5, candle.getAbertura(), 0.00001);
+		assertEquals(40.5, candle.getFechamento(), 0.00001);
+		assertEquals(40.5, candle.getMinimo(), 0.00001);
+		assertEquals(40.5, candle.getMaximo(), 0.00001);
+		assertEquals(4050.0, candle.getVolume(), 0.00001);
+	}
+
+	@Test
+	public void negociacoesEmOrdemCrescenteDeValor() {
+		Calendar hoje = Calendar.getInstance(); // pega a data de hoje
+
+		// cria 4 negociações
+		Negociacao negociacao1 = new Negociacao(40.5, 100, hoje);
+		Negociacao negociacao2 = new Negociacao(45.0, 100, hoje);
+		Negociacao negociacao3 = new Negociacao(49.8, 100, hoje);
+		Negociacao negociacao4 = new Negociacao(53.3, 100, hoje);
+		// adiciona as negociações a uma lista
+		List<Negociacao> negociacoes = Arrays.asList(negociacao1, negociacao2, negociacao3, negociacao4);
+
+		// instancia a fabrica de candlesticks
+		CandlestickFactory fabrica = new CandlestickFactory();
+		// passa os dados para o novo candle
+		Candlestick candle = fabrica.constroiCandleParaData(hoje, negociacoes);
+
+		assertEquals(40.5, candle.getAbertura(), 0.00001);
+		assertEquals(53.3, candle.getFechamento(), 0.00001);
+		assertEquals(40.5, candle.getMinimo(), 0.00001);
+		assertEquals(53.3, candle.getMaximo(), 0.00001);
+		assertEquals(18860.0, candle.getVolume(), 0.00001);
+	}
+
+	@Test
+	public void negociacoesEmOrdemDecrescenteDeValor() {
+		Calendar hoje = Calendar.getInstance(); // pega a data de hoje
+
+		// cria 4 negociações
+		Negociacao negociacao1 = new Negociacao(53.5, 100, hoje);
+		Negociacao negociacao2 = new Negociacao(49.0, 100, hoje);
+		Negociacao negociacao3 = new Negociacao(45.8, 100, hoje);
+		Negociacao negociacao4 = new Negociacao(40.3, 100, hoje);
+		// adiciona as negociações a uma lista
+		List<Negociacao> negociacoes = Arrays.asList(negociacao1, negociacao2, negociacao3, negociacao4);
+
+		// instancia a fabrica de candlesticks
+		CandlestickFactory fabrica = new CandlestickFactory();
+		// passa os dados para o novo candle
+		Candlestick candle = fabrica.constroiCandleParaData(hoje, negociacoes);
+
+		assertEquals(53.5, candle.getAbertura(), 0.00001);
+		assertEquals(40.3, candle.getFechamento(), 0.00001);
+		assertEquals(40.3, candle.getMinimo(), 0.00001);
+		assertEquals(53.5, candle.getMaximo(), 0.00001);
+		assertEquals(18860.0, candle.getVolume(), 0.00001);
 	}
 
 }

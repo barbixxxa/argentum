@@ -48,6 +48,11 @@ public class CandleBuilder {
 	}
 
 	public Candlestick geraCandle() {
+
+		if (this.data == null || this.abertura <= 0 || this.fechamento <= 0 || this.maximo <= 0 || this.minimo <= 0
+				|| this.volume <= 0) {
+			throw new IllegalStateException("Valor invalido");
+		}
 		return new Candlestick(abertura, fechamento, minimo, maximo, volume, data);
 	}
 }
