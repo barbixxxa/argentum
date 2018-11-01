@@ -21,8 +21,8 @@ public class CandlestickTest {
 	@Test
 	public void quandoAberturaIgualFechamentoEhAlta() {
 		Candlestick c = new Candlestick(15, 15, 20, 30, 10000, Calendar.getInstance());
-		assertEquals(c.isAlta(), true);
-		assertEquals(c.isBaixa(), false);
+		assertEquals(true, c.isAlta());
+		assertEquals(false, c.isBaixa());
 	}
 
 }
